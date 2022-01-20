@@ -57,7 +57,7 @@ const ExpenseFrom = (props) => {
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate)
     };
 
@@ -66,6 +66,26 @@ const ExpenseFrom = (props) => {
     setEnteredAmount('');
     setEnteredDate('');
   }
+
+  /*const formHider = (e) =>{
+    //console.log(e.target.parentNode.className)
+    let elements =[];
+    elements.push(e.target.parentNode.parentNode.children);
+    elements.forEach(list =>{
+      for(let i=0; i<=list.length-1; i++){
+        console.log(list[i].className);
+        if(list[i].className === 'new-expense__controls' || list[i].className === 'new-expense__actions'){
+          if(list[i].style.display === "none"){
+            list[i].style.display = 'block';
+            list[2].style.display = 'none';
+          } else{
+            list[i].style.display = 'none';
+            list[2].style.display = 'block';
+          }
+        }
+      }
+    })
+  }*/
 
   return (
     <form onSubmit={submitHnadler}>
@@ -89,8 +109,13 @@ const ExpenseFrom = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
+        <button type="button" onClick={props.onCancel}> Cancel</button>
+        <button /*onClick={formHider}*/ type="submit">Add Expense</button>
       </div>
+
+      {/* <div className="add_new_expense">
+        <button onClick={formHider}>Add New Expense</button>
+      </div> */}
     </form>
   );
 };
